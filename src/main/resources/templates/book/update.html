@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>도서수정</title>
+  </head>
+  <body>
+    <header th:insert="~{/common/templatesBuild::navi}"></header>
+    <main>
+      <h3>도서수정</h3>
+      <form action="/book/bookUpdateAction" method="post">
+      <th:block th:if="${book != null}">
+        <table>
+          <tr>
+            <th>도서 번호</th>
+            <td><input type="text" name="book_no" th:value="${book.book_no}" readonly></td>
+          </tr>
+          <tr>
+            <th>도서 제목</th>
+            <td><input type="text" name="title" th:value="${book.title}"></td>
+          </tr>
+          <tr>
+            <th>도서 작가</th>
+            <td><input type="text" name="author" th:value="${book.author}"></td>
+          </tr>
+          <tr>
+            <th>가격</th>
+            <td><input type="text" name="price" th:value="${book.price}"></td>
+          </tr>
+        </table>
+      </th:block>
+
+      <hr />
+
+      <input type="hidden" th:value="${book.book_no}" id="book_no">
+      <button
+        class="btn btn-primary"
+        id="btn_book_update"
+      >
+        수정
+      </button>
+      <button
+        type="reset"
+        class="btn btn-danger"
+      >
+        초기화
+      </button>
+      <button class="btn btn-info" id="go_book_list">리스트</button>
+    </form>
+    </main>
+    <script src="/js/book/update.js"></script>
+    <footer th:insert="~{/common/templatesBuild::footer}"></footer>
+  </body>
+</html>

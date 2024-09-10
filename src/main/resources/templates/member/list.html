@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>도서목록</title>
+    <link rel="stylesheet" href="/css/member/list.css" />
+  </head>
+  <body>
+    <header th:insert="~{/common/templatesBuild::navi}"></header>
+    <main
+      th:with="list=${map.list}, pageDto=${map.pageDto}"
+      th:if="${map!=null}"
+    >
+      <h2>도서목록</h2>
+      <form name="searchForm" action="/member/memberList" method="get" id="searchForm">
+        <input
+          type="hidden"
+          name="pageNo"
+          id="pageNo"
+          th:value="${map.pageDto.searchDto.pageNo}"
+        />
+        <input
+          type="hidden"
+          name="amount"
+          id="amount"
+          th:value="${map.pageDto.searchDto.amount}"
+        />
+
+        <div class="input-group" id="searchBox">
+          <select class="form-select" name="searchField">
+            <option value="id" selected>아이디</option>
+            <option
+              value="name"
+              th:selected="${map.pageDto.searchDto.searchField == 'name'}"
+            >
+              이름
+            </option>
+            <option
+              value="regdate"
+              th:selected="${map.pageDto.searchDto.searchField == 'regdate'}"
+            >
+              등록일
+            </option>
+          </select>
+          <input
+            type="text"
+            class="form-control"
+            placeholder="검색어"
+            name="searchWord"
+            th:value="${param.searchWord}"
+          />
+          <button class="btn btn-outline-secondary" type="submit">검색</button>
+        </div>
+      </form>
+
+      <hr />
+
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th scope="col">사용자번호</th>
+            <th scope="col">아이디</th>
+            <th scope="col">이름</th>
+            <th scope="col">주소</th>
+            <th scope="col">등록일자</th>
+          </tr>
+        </thead>
+        <tbody>
+          <th:block th:if="${#lists.isEmpty(list)}">
+            <tr>
+              <td colspan="4">등록된 사용자가 없습니다.</td>
+            </tr>
+          </th:block>
+          <th:block th:unless="${#lists.isEmpty(list)}">
+            <th:block th:each="member:${list}">
+              <tr>
+                <th scope="row" th:text="${member.mem_no}"></th>
+                <td>
+                  <a
+                    th:href="@{/member/memberDetail(mem_no=${member.mem_no})}"
+                    th:text="${member.id}"
+                  ></a>
+                </td>
+                <td th:text="${member.name}"></td>
+                <td th:text="${member.addr}"></td>
+                <td th:text="${member.regdate}"></td>
+              </tr>
+            </th:block>
+          </th:block>
+        </tbody>
+      </table>
+
+      <nav th:insert="~{/common/templatesBuild::pagenation}"></nav>
+    </main>
+    <footer th:insert="~{/common/templatesBuild::footer}"></footer>
+    <script src="/js/member/list.js"></script>
+  </body>
+</html>

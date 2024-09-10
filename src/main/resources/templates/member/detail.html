@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>사용자 상세</title>
+    <link rel="stylesheet" href="/css/member/detail.css">
+  </head>
+  <body>
+    <header th:insert="~{/common/templatesBuild::navi}"></header>
+    <main>
+        <h3>사용자 상세</h3>
+        <th:block th:if="${member != null}">
+          <table>
+            <tr>
+              <th:block th:unless="${#lists.isEmpty(imgFileList)}">
+              <td rowspan="5">
+                <img th:src="@{/download(fileName='/' + ${imgFileList[0].path} + '/' + ${imgFileList[0].sname}, oname=${imgFileList[0].oname})}" width="200px" height="150px" alt="첨부파일">
+              </td>
+              </th:block>
+              <th>사용자 번호</th>
+              <td th:text="${member.mem_no}"></td>
+            </tr>
+            <tr>
+              <th>아이디</th>
+              <td th:text="${member.id}"></td>
+            </tr>
+            <tr>
+              <th>이름</th>
+              <td th:text="${member.name}"></td>
+            </tr>
+            <tr>
+              <th>성별</th>
+              <td th:text="${member.gender}"></td>
+            </tr>
+            <tr>
+              <th>등록일</th>
+              <td th:text="${member.regdate}"></td>
+            </tr>
+          </table>
+        </th:block>
+  
+        <hr>
+  
+        <input type="hidden" th:value="${member.mem_no}" id="mem_no">
+        <button class="btn btn-primary" id="btn_member_update">수정</button>
+        <button class="btn btn-danger" id="btn_member_delete">삭제</button>
+        <button class="btn btn-info" id="go_member_list">리스트</button>
+    </main>
+    <script src="/js/member/detail.js"></script>
+    <footer th:insert="~{/common/templatesBuild::footer}"></footer>
+  </body>
+</html>

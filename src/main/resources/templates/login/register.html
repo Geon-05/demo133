@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>회원가입</title>
+    <link href="/css/sb-admin-2.min.css" rel="stylesheet" />
+    
+    <style>
+      .info_box {
+        height: 50px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="card o-hidden border-0 shadow-lg my-5">
+        <div class="card-body p-0">
+          <div class="row">
+            <div class="col-lg-5 d-none d-lg-block bg-register-image"></div>
+            <div class="col-lg-7">
+              <div class="p-5">
+                <div class="text-center">
+                  <h1 class="h4 text-gray-900 mb-4">Create an Account!</h1>
+                </div>
+                <form
+                  class="user"
+                  name="registerForm"
+                  method="post"
+                  action="/login/loginRegisterAction"
+                >
+                  <div class="form-group row">
+                    <div class="col-sm-6 mb-3 mb-sm-0">
+                      <input
+                        type="text"
+                        class="form-control form-control-user"
+                        id="input_id"
+                        name="id"
+                        placeholder="아이디"
+                      />
+                    </div>
+                    <div class="col-sm-6">
+                      <button
+                        type="button"
+                        class="btn btn-primary btn-user btn-block"
+                        id="btn_checkId"
+                      >
+                        아이디 중복체크
+                      </button>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <input
+                      type="text"
+                      class="form-control form-control-user"
+                      id="input_name"
+                      name="name"
+                      placeholder="이름"
+                    />
+                  </div>
+                  <div class="form-group row">
+                    <div class="col-sm-6 mb-3 mb-sm-0">
+                      <input
+                        type="password"
+                        class="form-control form-control-user"
+                        id="input_pw"
+                        name="pw"
+                        placeholder="비밀번호"
+                      />
+                    </div>
+                    <div class="col-sm-6">
+                      <input
+                        type="password"
+                        class="form-control form-control-user"
+                        id="pw_check"
+                        placeholder="비밀번호 확인"
+                      />
+                    </div>
+                  </div>
+                  <div class="info_box" id="pw_info"></div>
+
+                  <div class="form-group">
+                    <div class="form-check">
+                      <input
+                        class="form-check-input"
+                        type="radio"
+                        name="gender"
+                        id="chk_gender_man"
+                        value="M"
+                      />
+                      <label class="form-check-label" for="chk_gender_man">
+                        남성
+                      </label>
+                    </div>
+                    <div class="form-check">
+                      <input
+                        class="form-check-input"
+                        type="radio"
+                        name="gender"
+                        id="chk_gender_woman"
+                        value="W"
+                        checked
+                      />
+                      <label class="form-check-label" for="chk_gender_woman">
+                        여성
+                      </label>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <input
+                      type="text"
+                      class="form-control form-control-user"
+                      id="input_address"
+                      name="addr"
+                      placeholder="주소 (선택)"
+                    />
+                  </div>
+                  <div class="form-group">
+                    <input
+                      type="text"
+                      class="form-control form-control-user"
+                      id="input_phone"
+                      name="phone"
+                      placeholder="전화번호 (선택)"
+                    />
+                  </div>
+
+                  <a
+                    href="javascript:fn_validation()"
+                    class="btn btn-primary btn-user btn-block"
+                  >
+                    회원가입
+                  </a>
+                  <hr />
+                  <a
+                    href="index.html"
+                    class="btn btn-google btn-user btn-block"
+                  >
+                    <i class="fab fa-google fa-fw"></i> Register with Google
+                  </a>
+                  <a
+                    href="index.html"
+                    class="btn btn-facebook btn-user btn-block"
+                  >
+                    <i class="fab fa-facebook-f fa-fw"></i> Register with
+                    Facebook
+                  </a>
+                </form>
+                <hr />
+                <div class="text-center">
+                  <a class="small" href="forgot-password.html"
+                    >Forgot Password?</a
+                  >
+                </div>
+                <div class="text-center">
+                  <a class="small" href="/member/login"
+                    >로그인 페이지로!</a
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 회원가입 스크립트 -->
+    <script src="/js/login/register.js"></script>
+    
+    <!-- Bootstrap core JavaScript-->
+    <script src="/vendor/jquery/jquery.min.js"></script>
+    <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Core plugin JavaScript-->
+    <script src="/vendor/jquery-easing/jquery.easing.min.js"></script>
+
+    <!-- Custom scripts for all pages-->
+    <script src="/js/sb-admin-2.min.js"></script>
+  </body>
+</html>

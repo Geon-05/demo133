@@ -1,0 +1,13 @@
+.infoBox {
+  width: 200px;
+}
+.addBox {
+  width: 80%;
+  margin: 0 auto;
+}
+.msgBox {
+  color: red;
+  text-align: center;
+  font-weight: 800;
+  
+}
