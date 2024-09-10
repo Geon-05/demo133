@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo133.mapper.BookMapper">
+
+    <!-- selectBookList --> 
+
+    <select id="selectBookList" resultType="BookDto">
+        select list.*, decode(to_char(sysdate, 'yyyymmdd'),to_char(regdate, 'yyyymmdd'),'true','false') isNew
+        from (
+            select rownum rn, t.*
+            from (
+                select *
+                from tb_book
+                where 1=1
+                <if test="searchWord != null and searchWord != ''">
+                    <if test="searchField == 'regdate'">
+                        <![CDATA[    
+                        and to_char(${searchField},'yyyy-mm-dd') = #{searchWord}
+                        ]]>
+                    </if>
+                    <if test="searchField == 'title' or searchField == 'author'">
+                    and ${searchField} = #{searchWord}
+                    </if>
+                </if>
+            order by regdate desc
+            ) t
+        ) list
+        where rn between #{pageNo} * #{amount} - ( #{amount} - 1 )
+        and #{pageNo} * #{amount}
+    </select>
+
+    <!-- selectTotalCnt --> 
+
+    <select id="selectTotalCnt">
+        select count(*)
+        from tb_book
+        where 1=1
+        <if test="searchWord != null and searchWord != ''">
+            <if test="searchField == 'regdate'">
+                <![CDATA[    
+                and to_char(${searchField},'yyyy-mm-dd') = #{searchWord}
+                ]]>
+            </if>
+        <if test="searchField == 'title' or searchField == 'author'">
+            and ${searchField} = #{searchWord}
+        </if>
+        </if>
+    </select>
+</mapper>
