@@ -15,7 +15,7 @@
       <form action="/login/loginAction" method="post" name="form_login">
         <div class="loginBox">
           <div th:text="${param.msg}"></div>
-          <hr>
+          <hr />
           <div class="input-group login-box">
             <span class="input-group-text login-width">id</span>
             <input type="text" class="form-control" id="input_id" name="id" />
@@ -26,7 +26,7 @@
               class="custom-control-input"
               name="chkIdSave"
               id="chkIdSave"
-              value="1"
+              value="save"
             />
             <label for="chkIdSave"> 아이디 저장</label>
           </div>
@@ -39,12 +39,14 @@
               name="pw"
             />
           </div>
-          <button type="button" class="btn btn-primary" id="btn_login">
-            로그인
-          </button>
-          <button type="button" class="btn btn-primary" id="btn_regist">
-            회원가입
-          </button>
+          <div>
+            <button type="button" class="btn btn-primary" id="btn_login">
+              로그인
+            </button>
+            <button type="button" class="btn btn-primary" id="btn_regist">
+              회원가입
+            </button>
+          </div>
         </div>
       </form>
     </main>
