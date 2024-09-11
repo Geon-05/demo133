@@ -1,14 +1,11 @@
 let checkId = false;
 let checkPw = false;
 
-check_id();
-check_password();
-
 function check_password() {
   let input_pw = document.querySelector("#input_pw");
   let pw_check = document.querySelector("#pw_check");
   let pw_info = document.querySelector("#pw_info");
-
+  
   pw_check.addEventListener("keyup", function () {
     if (input_pw.value != pw_check.value) {
       pw_info.innerHTML = "비밀번호가 다릅니다.";
@@ -26,9 +23,9 @@ function fn_validation() {
   let input_pw = document.querySelector("#input_pw");
   let input_address = document.querySelector("#input_address");
   let input_phone = document.querySelector("#input_phone");
-
+  
   let regexp_pw = /^(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,12}$/;
-
+  
   if (input_id.value == "") {
     alert("아이디를 입력하세요.");
     return;
@@ -78,12 +75,12 @@ function fn_validation() {
 
 function check_id() {
   let btn_checkId = document.querySelector("#btn_checkId");
-
+  
   let regExp_id = /^[a-zA-Z0-9]{4,12}$/;
-
+  
   btn_checkId.addEventListener("click", function () {
     let inputIdValue = document.querySelector("#input_id").value;
-
+    
     if (inputIdValue == "") {
       alert("아이디를 입력해주세요.");
       return;
@@ -93,15 +90,19 @@ function check_id() {
       );
     } else {
       fetch(`/checkId/${inputIdValue}`)
-        .then((res) => res.json())
-        .then((data) => {
-          if (data.id_res == "1") {
-            alert("중복된 아이디입니다.");
-          } else {
-            checkId = true;
-            alert("사용가능한 아이디입니다.");
-          }
-        });
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.id_res == "1") {
+          alert("중복된 아이디입니다.");
+        } else {
+          checkId = true;
+          alert("사용가능한 아이디입니다.");
+        }
+      });
     }
   });
 }
+
+
+check_id();
+check_password();

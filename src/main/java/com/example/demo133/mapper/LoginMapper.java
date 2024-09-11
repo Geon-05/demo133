@@ -9,4 +9,6 @@ public interface LoginMapper {
     public MemberDto login(MemberDto member);
 
     public int selectCheckId(String id);
+
+    public int insertUser(MemberDto member);
 }

@@ -28,4 +28,10 @@ public class LoginService {
     public int selectCheckId(String id){
         return mapper.selectCheckId(id);
     }
+
+    public int insertUser(MemberDto member){
+        String encodePw = encoder.encode(member.getPw());
+        member.setPw(encodePw);
+        return mapper.insertUser(member);
+    }
 }
