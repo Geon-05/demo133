@@ -24,4 +24,8 @@ public class LoginService {
             return null;
         }
     }
+
+    public int selectCheckId(String id){
+        return mapper.selectCheckId(id);
+    }
 }

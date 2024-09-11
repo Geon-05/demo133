@@ -60,4 +60,10 @@ public class LoginController {
         }
     }
     
+    @GetMapping("/login/loginRegister")
+  public String loginRegister() {
+      return "/login/register";
+  }
+
+  
 }

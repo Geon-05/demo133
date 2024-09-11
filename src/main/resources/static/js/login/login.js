@@ -1,17 +1,11 @@
-window.addEventListener("load", function () {
-  login();
-  go_register();
-  id_save();
-});
-
 let login = function () {
   let btn_login = document.querySelector("#btn_login");
-
+  
   btn_login.addEventListener("click", function () {
-
+    
     let input_id = document.querySelector("#input_id");
     let input_password = document.querySelector("#input_password");
-
+    
     if (input_id.value == "") {
       alert("아이디를 입력하세요.");
       return;
@@ -26,14 +20,14 @@ let login = function () {
 
 let go_register = function(){
   let btn_regist = document.querySelector('#btn_regist');
-
+  
   btn_regist.addEventListener('click', function(){
     location.href='/login/loginRegister'
   })
 }
 
 let id_save = function(){
-  let idSave = getCookie('IdSave');
+  let idSave = getCookie('cookie_id');
   if (idSave!=null){
     let id = document.querySelector('#input_id');
     id.value = idSave;
@@ -52,3 +46,7 @@ function getCookie(name) {
   }
   return null;
 }
+
+login();
+go_register();
+id_save();
