@@ -19,6 +19,7 @@
       rel="stylesheet"
     />
     <link href="/css/sb-admin-2.min.css" rel="stylesheet" />
+    <link href="/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
   </head>
   <body id="page-top">
     <!-- Page Wrapper -->
@@ -34,12 +35,69 @@
           <!-- Begin Page Content -->
           <div class="container-fluid">
             <!-- 👍👍👍👍메인컨텐츠는 여기부터!👍👍👍👍 -->
+             <!-- Page Heading -->
+             <h1 class="h3 mb-2 text-gray-800">퍼팩트도서관</h1>
+             <p class="mb-4">반갑습니다. 퍼팩트도서관이에요 당신을 위한 도서목록이 준비되어 있습니다. <a target="_blank"
+                     href="/">홈페이지로</a>.</p>
+
             <div class="card shadow mb-4">
               <div class="card-header py-3">
                 <h6 class="m-0 font-weight-bold text-primary">
-                  DataTables Example
+                  도서목록
                 </h6>
               </div>
+              <form
+                name="searchForm"
+                action="/book/bookList"
+                method="get"
+                id="searchForm"
+              >
+                <input
+                  type="hidden"
+                  name="pageNo"
+                  id="pageNo"
+                  th:value="${map.pageDto.searchDto.pageNo}"
+                />
+                <input
+                  type="hidden"
+                  name="amount"
+                  id="amount"
+                  th:value="${map.pageDto.searchDto.amount}"
+                />
+
+                <div class="input-group" id="searchBox">
+                  <select class="form-select" name="searchField">
+                    <option value="title" selected>도서명</option>
+                    <option
+                      value="author"
+                      th:selected="${map.pageDto.searchDto.searchField == 'author'}"
+                    >
+                      작가
+                    </option>
+                    <option
+                      value="regdate"
+                      th:selected="${map.pageDto.searchDto.searchField == 'regdate'}"
+                    >
+                      등록일
+                    </option>
+                  </select>
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="검색어"
+                    name="searchWord"
+                    th:value="${param.searchWord}"
+                  />
+                  <button class="btn btn-outline-secondary" type="submit">검색</button>
+                  <button
+                    class="btn btn-outline-secondary"
+                    type="button"
+                    id="btn_insert_book"
+                  >
+                    도서등록
+                  </button>
+                </div>
+              </form>
               <div class="card-body">
                 <div class="table-responsive">
                   <table
@@ -50,35 +108,52 @@
                   >
                     <thead>
                       <tr>
-                        <th>Name</th>
-                        <th>Position</th>
-                        <th>Office</th>
-                        <th>Age</th>
-                        <th>Start date</th>
-                        <th>Salary</th>
+                        <th>도서번호</th>
+                        <th>제목</th>
+                        <th>작가</th>
+                        <th>가격</th>
+                        <th>출판사</th>
+                        <th>등록일</th>
                       </tr>
                     </thead>
                     <tfoot>
                       <tr>
-                        <th>Name</th>
-                        <th>Position</th>
-                        <th>Office</th>
-                        <th>Age</th>
-                        <th>Start date</th>
-                        <th>Salary</th>
+                        <th>도서번호</th>
+                        <th>제목</th>
+                        <th>작가</th>
+                        <th>가격</th>
+                        <th>출판사</th>
+                        <th>등록일</th>
                       </tr>
                     </tfoot>
                     <tbody>
+                      <th:block th:if="${#lists.isEmpty(map.list)}">
+                        <tr>
+                          <td colspan="6">등록된 도서가 없습니다.</td>
+                        </tr>
+                      </th:block>
+                      <th:block th:unless="${#lists.isEmpty(map.list)}" th:each="book:${map.list}">
                       <tr>
-                        <td>Tiger Nixon</td>
-                        <td>System Architect</td>
-                        <td>Edinburgh</td>
-                        <td>61</td>
-                        <td>2011/04/25</td>
-                        <td>$320,800</td>
+                        <td th:text="${book.book_no}"></td>
+                        <td th:text="${book.title}">
+                          <a
+                          th:href="@{/book/bookDetail(book_no=${book.book_no})}"
+                          th:text="${book.title}"
+                          ></a>
+                          <th:block th:if="${book.isNew}">
+                            <i class="bi bi-emoji-grin"></i>
+                          </th:block>
+                        </td>
+                        <td th:text="${book.author}"></td>
+                        <td th:text="${book.price}"></td>
+                        <td th:text="${book.pub_no}"></td>
+                        <td th:text="${book.regdate}"></td>
                       </tr>
+                    </th:block>
                     </tbody>
                   </table>
+                  <nav th:replace="~{/common/templatesBuild::pagenation}">
+                  </nav>
                 </div>
               </div>
             </div>
@@ -149,10 +224,9 @@
     <script src="/js/sb-admin-2.min.js"></script>
 
     <!-- Page level plugins -->
-    <script src="/vendor/chart.js/Chart.min.js"></script>
-
+    
     <!-- Page level custom scripts -->
-    <script src="/js/demo/chart-area-demo.js"></script>
-    <script src="/js/demo/chart-pie-demo.js"></script>
+    <script src="/js/book/list.js"></script>
+
   </body>
 </html>
