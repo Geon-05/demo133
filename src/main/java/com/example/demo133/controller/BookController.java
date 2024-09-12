@@ -28,9 +28,4 @@ public class BookController {
         return "/book/list";
     }
     
-    @GetMapping("/test/test")
-    public String getMethodName() {
-        return "/test/list";
-    }
-    
 }
