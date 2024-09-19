@@ -2,98 +2,190 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>도서목록</title>
-    <link rel="stylesheet" href="/css/member/list.css" />
+    <!-- 반응형 화면 구현 -->
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <title>사용자 목록</title>
+    <!-- 스타일시트 -->
+    <link
+      href="/vendor/fontawesome-free/css/all.min.css"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+      rel="stylesheet"
+    />
+    <link href="/css/sb-admin-2.min.css" rel="stylesheet" />
   </head>
-  <body>
-    <header th:insert="~{/common/templatesBuild::navi}"></header>
-    <main
-      th:with="list=${map.list}, pageDto=${map.pageDto}"
-      th:if="${map!=null}"
-    >
-      <h2>도서목록</h2>
-      <form name="searchForm" action="/member/memberList" method="get" id="searchForm">
-        <input
-          type="hidden"
-          name="pageNo"
-          id="pageNo"
-          th:value="${map.pageDto.searchDto.pageNo}"
-        />
-        <input
-          type="hidden"
-          name="amount"
-          id="amount"
-          th:value="${map.pageDto.searchDto.amount}"
-        />
+  <body id="page-top">
+    <div id="wrapper">
+      <ul th:replace="~{/common/templatesBuild::sideBar_left}"></ul>
 
-        <div class="input-group" id="searchBox">
-          <select class="form-select" name="searchField">
-            <option value="id" selected>아이디</option>
-            <option
-              value="name"
-              th:selected="${map.pageDto.searchDto.searchField == 'name'}"
-            >
-              이름
-            </option>
-            <option
-              value="regdate"
-              th:selected="${map.pageDto.searchDto.searchField == 'regdate'}"
-            >
-              등록일
-            </option>
-          </select>
-          <input
-            type="text"
-            class="form-control"
-            placeholder="검색어"
-            name="searchWord"
-            th:value="${param.searchWord}"
-          />
-          <button class="btn btn-outline-secondary" type="submit">검색</button>
+      <div id="content-wrapper" class="d-flex flex-column">
+        <div id="content">
+          <nav th:replace="~{/common/templatesBuild::topBar}"></nav>
+
+          <div class="container-fluid">
+            <!-- 👍👍👍👍메인컨텐츠는 여기부터!👍👍👍👍 -->
+            <!-- Page Heading -->
+            <h1 class="h3 mb-2 text-gray-800">퍼팩트도서관</h1>
+            <p class="mb-4">
+              반갑습니다. 관리자메뉴입니다.
+              <a target="_blank" href="/">홈페이지로</a>.
+            </p>
+
+            <div class="card shadow mb-4">
+              <div class="card-header py-3">
+                <h6 class="m-0 font-weight-bold text-primary">사용자 목록</h6>
+              </div>
+              <form
+                name="searchForm"
+                action="/member/memberList"
+                method="get"
+                id="searchForm"
+              >
+                <input
+                  type="hidden"
+                  name="pageNo"
+                  id="pageNo"
+                  th:value="${map.pageDto.searchDto.pageNo}"
+                />
+                <input
+                  type="hidden"
+                  name="amount"
+                  id="amount"
+                  th:value="${map.pageDto.searchDto.amount}"
+                />
+
+                <div class="input-group" id="searchBox">
+                  <select class="form-select" name="searchField">
+                    <option value="mem_no" selected>사용자번호</option>
+                    <option
+                      value="id"
+                      th:selected="${map.pageDto.searchDto.searchField == 'id'}"
+                    >
+                      아이디
+                    </option>
+                    <option
+                      value="name"
+                      th:selected="${map.pageDto.searchDto.searchField == 'name'}"
+                    >
+                      이름
+                    </option>
+                    <option
+                      value="regdate"
+                      th:selected="${map.pageDto.searchDto.searchField == 'regdate'}"
+                    >
+                      등록일
+                    </option>
+                  </select>
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="검색어"
+                    name="searchWord"
+                    th:value="${param.searchWord}"
+                  />
+                  <button class="btn btn-outline-secondary" type="submit">
+                    검색
+                  </button>
+                  <button
+                    class="btn btn-outline-secondary"
+                    type="button"
+                    id=""
+                  >
+                    특별버튼
+                  </button>
+                </div>
+              </form>
+              <div class="card-body">
+                <div class="table-responsive">
+                  <table
+                    class="table table-bordered"
+                    id="dataTable"
+                    width="100%"
+                    cellspacing="0"
+                  >
+                    <thead>
+                      <tr>
+                        <th>사용자번호</th>
+                        <th>이름</th>
+                        <th>성별</th>
+                        <th>주소</th>
+                        <th>전화번호</th>
+                        <th>등록일</th>
+                      </tr>
+                    </thead>
+                    <tfoot>
+                      <tr>
+                        <th>사용자번호</th>
+                        <th>이름</th>
+                        <th>성별</th>
+                        <th>주소</th>
+                        <th>전화번호</th>
+                        <th>등록일</th>
+                      </tr>
+                    </tfoot>
+                    <tbody>
+                      <th:block th:if="${#lists.isEmpty(map.list)}">
+                        <tr>
+                          <td colspan="6">등록된 사용자가 없습니다.</td>
+                        </tr>
+                      </th:block>
+                      <th:block
+                        th:unless="${#lists.isEmpty(map.list)}"
+                        th:each="member:${map.list}"
+                      >
+                        <tr>
+                          <td th:text="${member.mem_no}"></td>
+                          <td>
+                            <a
+                              th:href="@{/member/memberDetail(mem_no=${member.mem_no})}"
+                              th:text="${member.name}"
+                            ></a>
+                          </td>
+                          <td th:text="${member.gender}"></td>
+                          <td th:text="${member.addr}"></td>
+                          <td th:text="${member.phone}"></td>
+                          <td th:text="${member.regdate}"></td>
+                        </tr>
+                      </th:block>
+                    </tbody>
+                  </table>
+                  <nav th:replace="~{/common/templatesBuild::pagenation}"></nav>
+                </div>
+              </div>
+            </div>
+            <!-- 👍👍👍👍메인컨텐츠는 여기까지!👍👍👍👍 -->
+          </div>
         </div>
-      </form>
 
-      <hr />
+        <footer th:replace="~{/common/templatesBuild::footer}"></footer>
+      </div>
+    </div>
 
-      <table class="table table-hover">
-        <thead>
-          <tr>
-            <th scope="col">사용자번호</th>
-            <th scope="col">아이디</th>
-            <th scope="col">이름</th>
-            <th scope="col">주소</th>
-            <th scope="col">등록일자</th>
-          </tr>
-        </thead>
-        <tbody>
-          <th:block th:if="${#lists.isEmpty(list)}">
-            <tr>
-              <td colspan="4">등록된 사용자가 없습니다.</td>
-            </tr>
-          </th:block>
-          <th:block th:unless="${#lists.isEmpty(list)}">
-            <th:block th:each="member:${list}">
-              <tr>
-                <th scope="row" th:text="${member.mem_no}"></th>
-                <td>
-                  <a
-                    th:href="@{/member/memberDetail(mem_no=${member.mem_no})}"
-                    th:text="${member.id}"
-                  ></a>
-                </td>
-                <td th:text="${member.name}"></td>
-                <td th:text="${member.addr}"></td>
-                <td th:text="${member.regdate}"></td>
-              </tr>
-            </th:block>
-          </th:block>
-        </tbody>
-      </table>
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top">
+      <i class="fas fa-angle-up"></i>
+    </a>
 
-      <nav th:insert="~{/common/templatesBuild::pagenation}"></nav>
-    </main>
-    <footer th:insert="~{/common/templatesBuild::footer}"></footer>
+    <!-- Bootstrap core JavaScript-->
+    <script src="/vendor/jquery/jquery.min.js"></script>
+    <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Core plugin JavaScript-->
+    <script src="/vendor/jquery-easing/jquery.easing.min.js"></script>
+
+    <!-- Custom scripts for all pages-->
+    <script src="/js/sb-admin-2.min.js"></script>
+
+    <!-- Page level plugins -->
+
+    <!-- Page level custom scripts -->
     <script src="/js/member/list.js"></script>
+
   </body>
 </html>
