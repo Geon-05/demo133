@@ -32,7 +32,7 @@ public class LoginController {
         Cookie cookie = new Cookie("cookie_id", member.getId());
         cookie.setPath("/");
 
-        if ("save".equals(chkIdSave)) {
+        if ("1".equals(chkIdSave)) {
             cookie.setMaxAge(60 * 60 * 24 * 7);
         } else {
             cookie.setMaxAge(0);
@@ -71,5 +71,11 @@ public class LoginController {
             model.addAttribute("msg", "회원가입 중 예외가 발생하였습니다.\n관리자에게 문의하세요.");
             return "/common/msg";
         }
+    }
+
+    @GetMapping("/login/logout")
+    public String getMethodName(HttpSession session) {
+        session.invalidate();
+        return "redirect:/login/login";
     }
 }

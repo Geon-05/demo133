@@ -18,14 +18,6 @@ let login = function () {
   });
 };
 
-let go_register = function(){
-  let btn_regist = document.querySelector('#btn_regist');
-  
-  btn_regist.addEventListener('click', function(){
-    location.href='/login/loginRegister'
-  })
-}
-
 let id_save = function(){
   let idSave = getCookie('cookie_id');
   if (idSave!=null){
@@ -48,5 +40,4 @@ function getCookie(name) {
 }
 
 login();
-go_register();
 id_save();

@@ -10322,3 +10322,6 @@ footer.sticky-footer .copyright {
 body.sidebar-toggled footer.sticky-footer {
   width: 100%;
 }
+#searchBox{
+  padding: 5px 10%;
+}

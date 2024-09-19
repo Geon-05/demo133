@@ -38,4 +38,12 @@ public class BookService {
     public BookDto selectBookDetail(BookDto book) {
         return mapper.selectBookDetail(book);
     }
+
+    public int updateBook(BookDto book){
+      return mapper.updateBook(book);
+    }
+
+    public int deleteBook(String book_no) {
+      return mapper.deleteBook(book_no);
+    }
 }

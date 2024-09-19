@@ -63,4 +63,19 @@
         from tb_book
         where book_no=#{book_no}
     </select>
+
+    <!-- updateBook --> 
+
+    <update id="updateBook">
+        update tb_book
+        set title = #{title}, author = #{author}, price = #{price}
+        where book_no=#{book_no}
+    </update>
+
+    <!-- deleteBook --> 
+
+    <delete id="deleteBook">
+        delete from tb_book 
+        where book_no = #{book_no}
+    </delete>
 </mapper>

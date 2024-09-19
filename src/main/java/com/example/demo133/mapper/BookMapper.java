@@ -16,4 +16,8 @@ public interface BookMapper {
     public int insertBook(BookDto book);
 
     public BookDto selectBookDetail(BookDto book);
+
+    public int updateBook(BookDto book);
+
+    public int deleteBook(String book_no);
 }

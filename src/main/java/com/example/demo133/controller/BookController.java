@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.demo133.dto.BookDto;
 import com.example.demo133.dto.SearchDto;
@@ -68,5 +69,44 @@ public class BookController {
         List<UploadDto> imgFileList = uploadService.selectUploadList(selectBook.getImg_f_no());
         model.addAttribute("imgFileList", imgFileList);
         return "/book/detail";
+    }
+
+    @GetMapping("/book/bookUpdate")
+    public String getMethodName(
+            BookDto book, Model model) {
+        BookDto selectBook = service.selectBookDetail(book);
+        model.addAttribute("book", selectBook);
+        return "/book/update";
+    }
+
+    @PostMapping("/book/bookUpdateAction")
+    public String postMethodName(
+            BookDto book, Model model) {
+        int res = service.updateBook(book);
+        if (res > 0) {
+            return "redirect:/book/bookList";
+        } else {
+            model.addAttribute("msg", "도서수정 중 문제가 발생하였습니다.\n관리자에게 문의하세요.");
+            return "/common/msg";
+        }
+    }
+
+    @GetMapping("/book/bookDelete")
+    public String getMethodName(
+            @RequestParam(name = "book_no", required = false) String bookNo, Model model) {
+        if (bookNo == null) {
+            model.addAttribute("msg", "도서번호가 입력되지 않았습니다.");
+            return "/common/msg";
+        }
+
+        int res = service.deleteBook(bookNo);
+
+        if (res > 0) {
+            model.addAttribute("msg", "삭제 되었습니다.");
+            model.addAttribute("url", "/book/bookList");
+        } else {
+            model.addAttribute("msg", "삭제 중 예외가 발생 하였습니다.\n관리자에게 문의해주세요");
+        }
+        return "/common/msg";
     }
 }

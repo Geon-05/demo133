@@ -16,9 +16,9 @@ public class LoginRestController {
     @Autowired
     LoginService service;
 
-    @GetMapping("/checkId/{inputIdValue}")
+    @GetMapping("/checkId/{id}")
     public Map<String, Object> checkId(
-            @PathVariable(name = "inputIdValue") String id) {
+            @PathVariable(name = "id") String id) {
         Map<String, Object> map = new HashMap<>();
 
         int res = service.selectCheckId(id);
