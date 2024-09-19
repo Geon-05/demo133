@@ -1,18 +1,17 @@
-let checkId = false;
-let checkPw = false;
+let check_validation = true;
 
 function check_password() {
   let input_pw = document.querySelector("#input_pw");
   let check_pw = document.querySelector("#check_pw");
   let info_pw = document.querySelector("#info_pw");
-  
+
   check_pw.addEventListener("keyup", function () {
     if (input_pw.value != check_pw.value) {
       info_pw.innerHTML = "비밀번호가 다릅니다.";
-      checkPw = false;
+      check_validation = false;
     } else if (input_pw.value == check_pw.value) {
       info_pw.innerHTML = "비밀번호 체크!";
-      checkPw = true;
+      check_validation = true;
     }
   });
 }
@@ -23,19 +22,47 @@ function fn_validation() {
   let input_pw = document.querySelector("#input_pw");
   let input_address = document.querySelector("#input_address");
   let input_phone = document.querySelector("#input_phone");
-  
+  let input_email = document.querySelector("#input_email");
+
   let regexp_pw = /^(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,12}$/;
-  
+
+  check_validation = true;
+
   if (input_id.value == "") {
-    alert("아이디를 입력하세요.");
-    return;
-  } else if (input_name.value == "") {
-    alert("이름을 입력하세요.");
-    return;
-  } else if (input_pw.value == "") {
-    alert("비밀번호를 입력하세요.");
-    return;
-  } else if (input_address.value == "" || input_phone.value == "") {
+    msgBoxInsert("아이디를 입력하세요.", "input_id");
+    check_validation = false;
+  } else {
+    msgBoxDelete("input_id");
+  }
+
+  if (input_name.value == "") {
+    msgBoxInsert("이름을 입력하세요.", "input_name");
+    check_validation = false;
+  } else {
+    msgBoxDelete("input_name");
+  }
+
+  if (input_pw.value == "") {
+    msgBoxInsert("비밀번호를 입력하세요.", "input_pw");
+    check_validation = false;
+  } else if (!regexp_pw.test(input_pw.value)) {
+    msgBoxInsert(
+      "비밀번호는 영문자, 숫자와 특수문자를 조합하여주세요 \n 8~12자리를 입력하세요.",
+      "input_pw"
+    );
+    check_validation = false;
+  } else {
+    msgBoxDelete("input_pw");
+  }
+
+  if (input_email.value == "") {
+    msgBoxInsert("이메일을 입력하세요.", "input_email");
+    check_validation = false;
+  } else {
+    msgBoxDelete("input_email");
+  }
+
+  if (input_address.value == "" || input_phone.value == "") {
     let res = false;
     if (input_address.value == "" && input_phone.value == "") {
       res = confirm("주소와 전화번호를 기입하지 않습니까?");
@@ -58,13 +85,7 @@ function fn_validation() {
       return;
     }
   }
-  
-  if (!regexp_pw.test(input_pw.value)) {
-    alert(
-      "비밀번호는 영문자, 숫자와 특수문자를 조합하여주세요 \n 8~12자리를 입력하세요."
-    );
-    return;
-  } else if (checkId == true && checkPw == true) {
+  if (check_validation) {
     alert("아이디가 등록됨 확인!");
     registerForm.submit();
   } else {
@@ -75,43 +96,58 @@ function fn_validation() {
 
 function check_id() {
   let btn_checkId = document.querySelector("#btn_checkId");
-  
+
   let regExp_id = /^[a-zA-Z0-9]{4,12}$/;
-  
+
   btn_checkId.addEventListener("click", function () {
     let inputIdValue = document.querySelector("#input_id").value;
-    
-    if (inputIdValue == "") {
-      alert("아이디를 입력해주세요.");
-      return;
+
+    if (input_id.value == "") {
+      msgBoxInsert("아이디를 입력하세요.", "input_id");
     } else if (!regExp_id.test(inputIdValue)) {
-      alert(
-        "아이디는 영문자(대,소문자)와 숫자만 입력가능합니다.\n 4~12자리를 입력하세요."
+      msgBoxInsert(
+        "아이디는 영문자(대,소문자)와 숫자만 입력가능합니다.\n 4~12자리를 입력하세요.",
+        "input_id"
       );
     } else {
       fetch(`/checkId/${inputIdValue}`)
-      .then((res) => res.json())
-      .then((data) => {
-        if (data.id_res == "1") {
-          alert("중복된 아이디입니다.");
-        } else {
-          checkId = true;
-          alert("사용가능한 아이디입니다.");
-        }
-      });
+        .then((res) => res.json())
+        .then((data) => {
+          if (data.id_res == "1") {
+            msgBoxInsert("중복된 아이디입니다.", "input_id");
+          } else {
+            msgBoxInsert("사용가능한 아이디입니다.", "input_id");
+          }
+        });
     }
   });
 }
 
-function register(){
+function register() {
   let btn_register = document.querySelector("#btn_register");
 
-  btn_register.addEventListener('click',function(){
-    fn_validation()
-  })
+  btn_register.addEventListener("click", function () {
+    fn_validation();
+  });
 }
 
+function msgBoxInsert(msgBox, msgId) {
+  let existingMsg = document.querySelector(`#${msgId} + p`);
+  if (existingMsg) {
+    existingMsg.remove();
+  }
+  document
+    .getElementById(msgId)
+    .insertAdjacentHTML("afterend", `<p id='msgBox'>${msgBox}</p>`);
+}
+
+function msgBoxDelete(msgId) {
+  let existingMsg = document.querySelector(`#${msgId} + p`);
+  if (existingMsg) {
+    existingMsg.remove();
+  }
+}
 
 check_id();
 check_password();
-register()
+register();

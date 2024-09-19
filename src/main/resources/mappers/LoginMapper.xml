@@ -19,7 +19,7 @@
   <!-- insertUser --> 
 
   <insert id="insertUser">
-    insert into tb_member (mem_no, id, pw, name, gender, addr, phone)
-    values ('M'||lpad(seq_tb_mem.nextval,5,0),#{id},#{pw},#{name},#{gender},#{addr},#{phone})
+    insert into tb_member (mem_no, id, pw, name, gender, addr, phone, email)
+    values ('M'||lpad(seq_tb_mem.nextval,5,0),#{id},#{pw},#{name},#{gender},#{addr},#{phone},#{email})
   </insert>
 </mapper>
