@@ -3,15 +3,15 @@ let checkPw = false;
 
 function check_password() {
   let input_pw = document.querySelector("#input_pw");
-  let pw_check = document.querySelector("#pw_check");
-  let pw_info = document.querySelector("#pw_info");
+  let check_pw = document.querySelector("#check_pw");
+  let info_pw = document.querySelector("#info_pw");
   
-  pw_check.addEventListener("keyup", function () {
-    if (input_pw.value != pw_check.value) {
-      pw_info.innerHTML = "비밀번호가 다릅니다.";
+  check_pw.addEventListener("keyup", function () {
+    if (input_pw.value != check_pw.value) {
+      info_pw.innerHTML = "비밀번호가 다릅니다.";
       checkPw = false;
-    } else if (input_pw.value == pw_check.value) {
-      pw_info.innerHTML = "비밀번호 체크!";
+    } else if (input_pw.value == check_pw.value) {
+      info_pw.innerHTML = "비밀번호 체크!";
       checkPw = true;
     }
   });
@@ -103,6 +103,15 @@ function check_id() {
   });
 }
 
+function register(){
+  let btn_register = document.querySelector("#btn_register");
+
+  btn_register.addEventListener('click',function(){
+    fn_validation()
+  })
+}
+
 
 check_id();
 check_password();
+register()

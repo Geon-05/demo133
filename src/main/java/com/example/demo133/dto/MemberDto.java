@@ -13,5 +13,5 @@ public class MemberDto {
     private String phone;
     private String delyn;
     private String regdate;
-    
+    private String email;
 }

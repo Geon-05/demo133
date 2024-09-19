@@ -1,28 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="utf-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1, shrink-to-fit=no"
-    />
-
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>회원가입</title>
-
-    <link
-      href="/vendor/fontawesome-free/css/all.min.css"
-      rel="stylesheet"
-      type="text/css"
-    />
-    <link
-      href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-      rel="stylesheet"
-    />
-
     <link href="/css/sb-admin-2.min.css" rel="stylesheet" />
+    <link href="/css/login/register.css" rel="stylesheet" />
   </head>
-
-  <body class="bg-gradient-primary">
+  <body>
     <div class="container">
       <div class="card o-hidden border-0 shadow-lg my-5">
         <div class="card-body p-0">
@@ -31,9 +16,7 @@
             <div class="col-lg-7">
               <div class="p-5">
                 <div class="text-center">
-                  <h1 class="h4 text-gray-900 mb-4">
-                    퍼팩트도서관에 오신것을 환영합니다!
-                  </h1>
+                  <h1 class="h4 text-gray-900 mb-4">회원가입</h1>
                 </div>
                 <form
                   class="user"
@@ -63,15 +46,6 @@
                   </div>
                   <div class="form-group">
                     <input
-                      type="email"
-                      class="form-control form-control-user"
-                      id="input_email"
-                      name="email"
-                      placeholder="이메일"
-                    />
-                  </div>
-                  <div class="form-group">
-                    <input
                       type="text"
                       class="form-control form-control-user"
                       id="input_name"
@@ -93,37 +67,38 @@
                       <input
                         type="password"
                         class="form-control form-control-user"
-                        id="check_pw"
+                        id="pw_check"
                         placeholder="비밀번호 확인"
                       />
                     </div>
                   </div>
-                  <div class="info_box" id="info_pw"></div>
+                  <div class="info_box" id="pw_info"></div>
 
-                  <div class="form-group row">
-                    성별
+                  <div class="form-group">
                     <div class="form-check">
-                        <label class="form-check-label" for="chk_gender_man">
-                          남성
-                        </label>
-                        <input
-                          class="form-check-input"
-                          type="radio"
-                          name="gender"
-                          id="chk_gender_man"
-                          value="M"
-                          checked
-                        />
-                        <label class="form-check-label" for="chk_gender_woman">
-                          여성
-                        </label>
-                        <input
-                          class="form-check-input"
-                          type="radio"
-                          name="gender"
-                          id="chk_gender_woman"
-                          value="W"
-                        />
+                      <input
+                        class="form-check-input"
+                        type="radio"
+                        name="gender"
+                        id="chk_gender_man"
+                        value="M"
+                      />
+                      <label class="form-check-label" for="chk_gender_man">
+                        남성
+                      </label>
+                    </div>
+                    <div class="form-check">
+                      <input
+                        class="form-check-input"
+                        type="radio"
+                        name="gender"
+                        id="chk_gender_woman"
+                        value="W"
+                        checked
+                      />
+                      <label class="form-check-label" for="chk_gender_woman">
+                        여성
+                      </label>
                     </div>
                   </div>
                   <div class="form-group">
@@ -145,13 +120,12 @@
                     />
                   </div>
 
-                  <button
-                    type="button"
+                  <a
+                    href="javascript:fn_validation()"
                     class="btn btn-primary btn-user btn-block"
-                    id="btn_register"
                   >
                     회원가입
-                  </button>
+                  </a>
                   <hr />
                   <a
                     href="index.html"
@@ -175,7 +149,7 @@
                 </div>
                 <div class="text-center">
                   <a class="small" href="/login/login"
-                    >이미 회원이신가요? 로그인페이지로</a
+                    >로그인 페이지로!</a
                   >
                 </div>
               </div>
@@ -185,6 +159,9 @@
       </div>
     </div>
 
+    <!-- 회원가입 스크립트 -->
+    <script src="/js/login/register.js"></script>
+    
     <!-- Bootstrap core JavaScript-->
     <script src="/vendor/jquery/jquery.min.js"></script>
     <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -194,9 +171,5 @@
 
     <!-- Custom scripts for all pages-->
     <script src="/js/sb-admin-2.min.js"></script>
-
-    <!-- Page level custom scripts -->
-    <script src="/js/login/register.js"></script>
-
   </body>
 </html>

@@ -2,9 +2,6 @@ package com.example.demo133.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-
-
 
 @Controller
 public class MainController {
@@ -14,8 +11,14 @@ public class MainController {
     }
     
     @GetMapping("/test")
-    public String getMethodName() {
+    public String test() {
         return "/common/template";
     }
+    
+    @GetMapping("/error404")
+    public String error_code404() {
+        return "/common/404";
+    }
+    
     
 }
