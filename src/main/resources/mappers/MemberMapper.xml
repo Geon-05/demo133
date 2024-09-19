@@ -32,4 +32,11 @@
         ${searchField} = #{searchWord} </if>
         </if>
     </select>
+
+    <!-- insertTestMember --> 
+
+    <insert id="insertTestMember">
+        insert into tb_member (mem_no, id, pw, name, gender, addr, phone)
+        values ('M'||lpad(seq_tb_mem.nextval,5,0),'테스트ID'||seq_tb_mem.nextval,'test','name','M','addr','010-0000-0000')
+    </insert>
 </mapper>

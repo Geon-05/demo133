@@ -30,4 +30,8 @@ public class MemberService {
 
         return map;
     }
+
+    public int insertTestMember(){
+        return mapper.insertTestMember();
+    }
 }

@@ -11,6 +11,7 @@ import com.example.demo133.dto.SearchDto;
 import com.example.demo133.service.MemberService;
 
 
+
 @Controller
 public class MemberController {
     @Autowired
@@ -24,4 +25,14 @@ public class MemberController {
         return "/member/list";
     }
     
+    @GetMapping("/member/testMemberInsert")
+    public String insertTestMember(Model model) {
+        int res = service.insertTestMember();
+        if (res > 0) {
+            return "redirect:/member/memberList";
+        } else {
+            model.addAttribute("msg", "테스트 사용자 등록 중 문제가 발생하였습니다.\n관리자에게 문의하세요.");
+            return "/common/msg";
+        }
+    }
 }

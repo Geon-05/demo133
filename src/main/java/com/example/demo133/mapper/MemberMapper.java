@@ -12,4 +12,6 @@ public interface MemberMapper {
     public List<MemberDto> selectMemberList(SearchDto searchDto);
 
     public int selectTotalCnt(SearchDto searchDto);
+
+    public int insertTestMember();
 }
