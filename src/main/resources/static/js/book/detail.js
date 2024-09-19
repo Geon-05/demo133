@@ -1,10 +1,4 @@
-let book_no = document.querySelector('#book_no').value
-
-document.addEventListener("DOMContentLoaded", function () {
-  bookUpdate();
-  go_book_list();
-  bookDelete();
-});
+let book_no = document.querySelector("#book_no").value;
 
 function bookUpdate() {
   let btn_book_update = document.querySelector("#btn_book_update");
@@ -29,3 +23,7 @@ function go_book_list() {
     location.href = "/book/bookList";
   });
 }
+
+bookUpdate();
+go_book_list();
+bookDelete();

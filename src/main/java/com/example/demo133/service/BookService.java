@@ -17,7 +17,7 @@ public class BookService {
     @Autowired
     BookMapper mapper;
 
-    public Map<String, Object> selectBookList(SearchDto searchDto){
+    public Map<String, Object> selectBookList(SearchDto searchDto) {
         Map<String, Object> map = new HashMap<>();
 
         List<BookDto> list = mapper.selectBookList(searchDto);
@@ -29,5 +29,13 @@ public class BookService {
         map.put("pageDto", pageDto);
 
         return map;
+    }
+
+    public int insertBook(BookDto book) {
+        return mapper.insertBook(book);
+    }
+
+    public BookDto selectBookDetail(BookDto book) {
+        return mapper.selectBookDetail(book);
     }
 }

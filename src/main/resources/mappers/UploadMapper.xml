@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo133.mapper.UploadMapper">
+
+    <!-- selectSeqUploadFile --> 
+
+    <select id="selectSeqUploadFile">
+        select seq_upload_file.nextval from dual
+    </select>    
+
+    <!-- insertUploadMulti --> 
+
+    <insert id="insertUploadMulti">
+        insert into tb_upload_file (f_no, idx, oname, sname, path, file_type)
+        values (#{f_no}, #{idx}, #{oname}, #{sname}, #{path}, #{file_type})
+    </insert>
+
+    <!-- selectUpload --> 
+
+    <select id="selectUpload">
+        select * from tb_upload_file where f_no=#{f_no}
+    </select>
+</mapper>

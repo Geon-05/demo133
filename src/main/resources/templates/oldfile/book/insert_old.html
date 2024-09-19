@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>도서등록</title>
+    <link rel="stylesheet" href="/css/book/insert.css" />
+  </head>
+  <body>
+    <header th:insert="~{/common/templatesBuild::navi}"></header>
+    <main>
+      <div class="addBox">
+        <h1>도서등록</h1>
+        <form
+          name="insertForm"
+          action="/book/bookInsertAction"
+          method="post"
+          enctype="multipart/form-data"
+        >
+          <div class="input-group mb-3">
+            <span class="input-group-text infoBox">타이틀</span>
+            <input
+              type="text"
+              class="form-control"
+              name="title"
+              id="input_title"
+            />
+          </div>
+          <div class="input-group mb-3">
+            <span class="input-group-text infoBox">작가</span>
+            <input
+              type="text"
+              class="form-control"
+              name="author"
+              id="input_author"
+            />
+          </div>
+          <div class="input-group mb-3">
+            <span class="input-group-text infoBox">가격</span>
+            <input
+              type="text"
+              class="form-control"
+              name="price"
+              id="input_price"
+            />
+          </div>
+          <div class="input-group mb-3">
+            <span class="input-group-text infoBox">출판사</span>
+            <input
+              type="text"
+              class="form-control"
+              id="input_public"
+              placeholder="선택사항"
+              name="pub_no"
+            />
+          </div>
+          <div class="input-group mb-3">
+            <span class="input-group-text infoBox">첨부파일</span>
+            <input
+              type="file"
+              class="form-control"
+              name="file"
+              id="input_file"
+              multiple
+            />
+          </div>
+          <div>
+            * jpg, gif, png 파일만 업로드 가능 합니다.<br />
+            * 파일의 최대크기는 5MB입니다.
+          </div>
+          <button type="button" class="btn btn-primary" id="btn_addBook">
+            등록
+          </button>
+          <button type="reset" class="btn btn-danger">초기화</button>
+        </form>
+      </div>
+    </main>
+    <footer th:insert="~{/common/templatesBuild::footer}"></footer>
+    <script src="/js/book/insert.js"></script>
+  </body>
+</html>

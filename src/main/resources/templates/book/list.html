@@ -135,13 +135,13 @@
                       <th:block th:unless="${#lists.isEmpty(map.list)}" th:each="book:${map.list}">
                       <tr>
                         <td th:text="${book.book_no}"></td>
-                        <td th:text="${book.title}">
+                        <td>
                           <a
                           th:href="@{/book/bookDetail(book_no=${book.book_no})}"
                           th:text="${book.title}"
                           ></a>
                           <th:block th:if="${book.isNew}">
-                            <i class="bi bi-emoji-grin"></i>
+                            new
                           </th:block>
                         </td>
                         <td th:text="${book.author}"></td>
