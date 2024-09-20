@@ -72,7 +72,7 @@ public class BookController {
     }
 
     @GetMapping("/book/bookUpdate")
-    public String getMethodName(
+    public String update(
             BookDto book, Model model) {
         BookDto selectBook = service.selectBookDetail(book);
         model.addAttribute("book", selectBook);
@@ -80,7 +80,7 @@ public class BookController {
     }
 
     @PostMapping("/book/bookUpdateAction")
-    public String postMethodName(
+    public String updateAction(
             BookDto book, Model model) {
         int res = service.updateBook(book);
         if (res > 0) {
@@ -92,7 +92,7 @@ public class BookController {
     }
 
     @GetMapping("/book/bookDelete")
-    public String getMethodName(
+    public String delete(
             @RequestParam(name = "book_no", required = false) String bookNo, Model model) {
         if (bookNo == null) {
             model.addAttribute("msg", "도서번호가 입력되지 않았습니다.");

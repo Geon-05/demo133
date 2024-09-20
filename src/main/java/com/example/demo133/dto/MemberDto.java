@@ -14,4 +14,6 @@ public class MemberDto {
     private String delyn;
     private String regdate;
     private String email;
+    private int img_f_no;
+    private int grade;
 }

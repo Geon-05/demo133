@@ -1,10 +1,4 @@
-let mem_no = document.querySelector('#mem_no').value
-
-document.addEventListener("DOMContentLoaded", function () {
-  memberUpdate();
-  go_member_list();
-  memberDelete();
-});
+let book_no = document.querySelector("#mem_no").value;
 
 function memberUpdate() {
   let btn_member_update = document.querySelector("#btn_member_update");
@@ -29,3 +23,7 @@ function go_member_list() {
     location.href = "/member/memberList";
   });
 }
+
+memberUpdate();
+go_member_list();
+memberDelete();

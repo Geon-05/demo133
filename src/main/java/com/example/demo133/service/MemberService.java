@@ -34,4 +34,8 @@ public class MemberService {
     public int insertTestMember(){
         return mapper.insertTestMember();
     }
+
+    public MemberDto selectMemberDetail(MemberDto member){
+        return mapper.selectMemberDetail(member);
+    }
 }
