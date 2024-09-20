@@ -1,9 +1,9 @@
 let check_validation = true;
 
 function check_password() {
-  let input_pw = document.querySelector("#input_pw");
-  let check_pw = document.querySelector("#check_pw");
-  let info_pw = document.querySelector("#info_pw");
+  const input_pw = document.querySelector("#input_pw");
+  const check_pw = document.querySelector("#check_pw");
+  const info_pw = document.querySelector("#info_pw");
 
   check_pw.addEventListener("keyup", function () {
     if (input_pw.value != check_pw.value) {
@@ -17,14 +17,14 @@ function check_password() {
 }
 
 function fn_validation() {
-  let input_id = document.querySelector("#input_id");
-  let input_name = document.querySelector("#input_name");
-  let input_pw = document.querySelector("#input_pw");
-  let input_address = document.querySelector("#input_address");
-  let input_phone = document.querySelector("#input_phone");
-  let input_email = document.querySelector("#input_email");
+  const input_id = document.querySelector("#input_id");
+  const input_name = document.querySelector("#input_name");
+  const input_pw = document.querySelector("#input_pw");
+  const input_address = document.querySelector("#input_address");
+  const input_phone = document.querySelector("#input_phone");
+  const input_email = document.querySelector("#input_email");
 
-  let regexp_pw = /^(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,12}$/;
+  const regexp_pw = /^(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,12}$/;
 
   check_validation = true;
 
@@ -95,12 +95,12 @@ function fn_validation() {
 }
 
 function check_id() {
-  let btn_checkId = document.querySelector("#btn_checkId");
+  const btn_checkId = document.querySelector("#btn_checkId");
 
-  let regExp_id = /^[a-zA-Z0-9]{4,12}$/;
+  const regExp_id = /^[a-zA-Z0-9]{4,12}$/;
 
   btn_checkId.addEventListener("click", function () {
-    let inputIdValue = document.querySelector("#input_id").value;
+    const inputIdValue = document.querySelector("#input_id").value;
 
     if (input_id.value == "") {
       msgBoxInsert("아이디를 입력하세요.", "input_id");
@@ -124,7 +124,7 @@ function check_id() {
 }
 
 function register() {
-  let btn_register = document.querySelector("#btn_register");
+  const btn_register = document.querySelector("#btn_register");
 
   btn_register.addEventListener("click", function () {
     fn_validation();

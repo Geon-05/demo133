@@ -1,7 +1,7 @@
 insert_book();
 
 function insert_book() {
-  let btn_addBook = document.querySelector("#btn_addBook");
+  const btn_addBook = document.querySelector("#btn_addBook");
 
   btn_addBook.addEventListener("click", function () {
     if (validation()) {
@@ -11,18 +11,18 @@ function insert_book() {
 }
 
 function validation() {
-  let input_title = document.querySelector("#input_title");
-  let input_author = document.querySelector("#input_author");
-  let input_price = document.querySelector("#input_price");
-  let input_public = document.querySelector("#input_public");
-  let input_file = document.querySelector("#input_file");
+  const input_title = document.querySelector("#input_title");
+  const input_author = document.querySelector("#input_author");
+  const input_price = document.querySelector("#input_price");
+  const input_public = document.querySelector("#input_public");
+  const input_file = document.querySelector("#input_file");
 
   let validation_chk = true;
   let validation_pub_chk = true;
   let validation_file_chk = true;
 
   let extensions = ["jpg", "gif", "png"];
-  const maxSize = 1024 * 1024 * 5;
+  let maxSize = 1024 * 1024 * 5;
 
   if (input_title.value == "") {
     msgBoxInsert("도서 타이틀을 입력하세요.", "input_title");

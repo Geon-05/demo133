@@ -3,6 +3,7 @@ package com.example.demo133.controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
+
 @Controller
 public class MainController {
     @GetMapping("/")
@@ -20,5 +21,9 @@ public class MainController {
         return "/common/404";
     }
     
+    @GetMapping("/other/calendar")
+    public String getMethodName() {
+        return "/other/calendar";
+    }
     
 }
