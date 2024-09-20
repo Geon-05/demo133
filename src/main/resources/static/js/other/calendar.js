@@ -3,6 +3,7 @@ const calendarDays = document.getElementById('calendarDays');
 const eventsList = document.getElementById('events');
 
 let currentDate = new Date();
+// 이벤트 DB에서 가져오도록 변경예정
 let events = [
     { date: '2024-09-21', title: '도서관 강연' },
     { date: '2024-09-22', title: '책 모임' },

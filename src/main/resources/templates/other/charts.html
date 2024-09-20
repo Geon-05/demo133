@@ -7,13 +7,11 @@
       name="viewport"
       content="width=device-width, initial-scale=1, shrink-to-fit=no"
     />
-    <title>퍼팩트도서관 달력</title>
+    <title>차트</title>
     <!-- 스타일시트 -->
     <div th:replace="~{/common/templatesBuild::basic_css}"></div>
 
     <!-- 페이지 스타일시트 -->
-    <link rel="stylesheet" href="/css/other/calendar.css" />
-    
   </head>
   <body id="page-top">
     <!-- Page Wrapper -->
@@ -29,29 +27,43 @@
           <!-- Begin Page Content -->
           <div class="container-fluid">
             <!-- 👍👍👍👍메인컨텐츠는 여기부터!👍👍👍👍 -->
-            <h1>퍼팩트도서관 행사 일정</h1>
-            <div class="calendar">
-              <div class="calendar-header">
-                <button id="prevMonth">이전</button>
-                <h2 id="monthYear"></h2>
-                <button id="nextMonth">다음</button>
+            <!-- Area Chart -->
+            <div class="card shadow mb-4">
+              <div class="card-header py-3">
+                <h6 class="m-0 font-weight-bold text-primary">Area Chart</h6>
               </div>
-              <div class="calendar-grid">
-                <div class="day">일</div>
-                <div class="day">월</div>
-                <div class="day">화</div>
-                <div class="day">수</div>
-                <div class="day">목</div>
-                <div class="day">금</div>
-                <div class="day">토</div>
-              </div>
-              <div class="calendar-grid" id="calendarDays">
+              <div class="card-body">
+                <div class="chart-area">
+                  <canvas id="myAreaChart"></canvas>
+                </div>
               </div>
             </div>
 
-            <div id="eventList">
-              <h3>이벤트 목록</h3>
-              <ul id="events"></ul>
+            <!-- Donut Chart -->
+            <div class="col-xl-4 col-lg-5">
+              <div class="card shadow mb-4">
+                <!-- Card Header - Dropdown -->
+                <div class="card-header py-3">
+                  <h6 class="m-0 font-weight-bold text-primary">Donut Chart</h6>
+                </div>
+                <!-- Card Body -->
+                <div class="card-body">
+                  <div class="chart-pie pt-4">
+                    <canvas id="myPieChart"></canvas>
+                  </div>
+                  <div class="mt-4 text-center small">
+                    <span class="mr-2">
+                      <i class="fas fa-circle text-primary"></i> 직접
+                    </span>
+                    <span class="mr-2">
+                      <i class="fas fa-circle text-success"></i> 추천
+                    </span>
+                    <span class="mr-2">
+                      <i class="fas fa-circle text-info"></i> 소셜
+                    </span>
+                  </div>
+                </div>
+              </div>
             </div>
 
             <!-- 👍👍👍👍메인컨텐츠는 여기까지!👍👍👍👍 -->
@@ -75,8 +87,9 @@
     <div th:replace="~{/common/templatesBuild::basic_js}"></div>
 
     <!-- Page level plugins -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1"></script>
 
     <!-- Page level custom scripts -->
-    <script src="/js/other/calendar.js"></script>
+    <script src="/js/other/charts.js"></script>
   </body>
 </html>

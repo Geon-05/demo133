@@ -4,6 +4,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
 
+
 @Controller
 public class MainController {
     @GetMapping("/")
@@ -22,8 +23,13 @@ public class MainController {
     }
     
     @GetMapping("/other/calendar")
-    public String getMethodName() {
+    public String calendar() {
         return "/other/calendar";
+    }
+    
+    @GetMapping("/other/charts")
+    public String charts() {
+        return "/other/charts";
     }
     
 }
