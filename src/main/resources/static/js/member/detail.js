@@ -1,4 +1,4 @@
-let book_no = document.querySelector("#mem_no").value;
+let mem_no = document.querySelector("#mem_no").value;
 
 function memberUpdate() {
   let btn_member_update = document.querySelector("#btn_member_update");

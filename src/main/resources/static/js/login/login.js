@@ -4,16 +4,18 @@ let login = function () {
   btn_login.addEventListener("click", function () {
     
     let input_id = document.querySelector("#input_id");
-    let input_password = document.querySelector("#input_password");
+    let input_password = document.querySelector("#input_pw");
     
     if (input_id.value == "") {
       alert("아이디를 입력하세요.");
       return;
-    } else if (input_password.value == "") {
+    }
+    if (input_password.value == "") {
       alert("비밀번호를 입력하세요.");
       return;
-    } else {
-      form_login.submit();
+    }
+    if (input_id.value != "" && input_password.value != ""){
+      loginForm.submit();
     }
   });
 };

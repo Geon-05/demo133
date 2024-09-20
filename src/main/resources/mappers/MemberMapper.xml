@@ -47,4 +47,19 @@
         from tb_member
         where mem_no=#{mem_no}
     </select>
+
+    <!-- updateMember --> 
+
+    <update id="updateMember">
+        update tb_member
+        set gender = #{gender}, phone = #{phone}, email = #{email}, addr = #{addr}
+        where mem_no=#{mem_no}
+    </update>
+
+    <!-- deleteMember --> 
+
+    <delete id="deleteMember">
+        delete from tb_member 
+        where mem_no = #{mem_no}
+    </delete>
 </mapper>

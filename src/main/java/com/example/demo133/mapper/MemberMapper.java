@@ -16,4 +16,8 @@ public interface MemberMapper {
     public int insertTestMember();
 
     public MemberDto selectMemberDetail(MemberDto member);
+
+    public int updateMember(MemberDto member);
+
+    public int deleteMember(String mem_no);
 }

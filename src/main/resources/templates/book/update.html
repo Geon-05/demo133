@@ -34,7 +34,7 @@
           <!-- Begin Page Content -->
           <div class="container-fluid">
             <!-- 👍👍👍👍메인컨텐츠는 여기부터!👍👍👍👍 -->
-            <form action="/book/bookUpdateAction" method="post">
+            <form action="/book/bookUpdateAction" method="post" name="updateForm">
               <th:block th:if="${book != null}">
                 <table>
                   <tr>
@@ -64,6 +64,7 @@
                 </table>
               </th:block>
         
+            </form>
               <hr />
         
               <input type="hidden" th:value="${book.book_no}" id="book_no">
@@ -82,7 +83,6 @@
               <button class="btn btn-info" id="go_book_list">
                 리스트
               </button>
-            </form>
             <!-- 👍👍👍👍메인컨텐츠는 여기까지!👍👍👍👍 -->
           </div>
         </div>

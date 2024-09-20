@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>사용자수정</title>
+  </head>
+  <body>
+    <header th:insert="~{/common/templatesBuild::navi}"></header>
+    <main>
+      <h3>도서수정</h3>
+      <form action="/member/memberUpdateAction" method="post">
+      <th:block th:if="${member != null}">
+        <table>
+          <tr>
+            <th>사용자 번호</th>
+            <td><input type="text" name="mem_no" th:value="${member.mem_no}" readonly></td>
+          </tr>
+          <tr>
+            <th>아이디</th>
+            <td><input type="text" name="id" th:value="${member.id}"></td>
+          </tr>
+          <tr>
+            <th>이름</th>
+            <td><input type="text" name="name" th:value="${member.name}"></td>
+          </tr>
+          <tr>
+            <th>성별</th>
+            <td><input type="text" name="gender" th:value="${member.gender}"></td>
+          </tr>
+          <tr>
+            <th>주소</th>
+            <td><input type="text" name="addr" th:value="${member.addr}"></td>
+          </tr>
+        </table>
+      </th:block>
+
+      <hr />
+
+      <input type="hidden" th:value="${member.mem_no}" id="mem_no">
+      <button
+        class="btn btn-primary"
+        id="btn_member_update"
+      >
+        수정
+      </button>
+      <button
+        type="reset"
+        class="btn btn-danger"
+      >
+        초기화
+      </button>
+      <button class="btn btn-info" id="go_member_list">리스트</button>
+    </form>
+    </main>
+    <script src="/js/member/update.js"></script>
+    <footer th:insert="~{/common/templatesBuild::footer}"></footer>
+  </body>
+</html>

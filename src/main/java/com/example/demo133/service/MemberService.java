@@ -38,4 +38,12 @@ public class MemberService {
     public MemberDto selectMemberDetail(MemberDto member){
         return mapper.selectMemberDetail(member);
     }
+
+    public int updateMember(MemberDto member){
+      return mapper.updateMember(member);
+    }
+
+    public int deleteMember(String mem_no) {
+      return mapper.deleteMember(mem_no);
+    }
 }
